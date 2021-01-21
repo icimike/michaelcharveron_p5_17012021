@@ -1,4 +1,40 @@
-
-.bg-origin {
-    background: #f3e9f1 !important;
+@import url("https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap");
+* {
+  margin: 0;
+  padding: 0;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f3e9f1;
+}
+
+.logo {
+  width: auto;
+  height: 100px;
+}
+
+.fas {
+  font-size: 3rem;
+}
+
+.fa-shopping-basket {
+  background: linear-gradient(150deg, #e38912, #8f5bfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.basket__text {
+  font-family: "Finger Paint", cursive;
+}
+
+/*# sourceMappingURL=style.css.map */

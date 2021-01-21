@@ -9,3 +9,4 @@ const teddySchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Teddy', teddySchema);
+
