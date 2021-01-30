@@ -75,12 +75,35 @@
         </div>
       </div>
       <div class="container-fluid mt-3">
-        <ul id="teddies" class="list-group list-unstyled"></ul>
+        <div class="card mb-3">
+          <div id="cardProduct" class="row g-0">
+            <template id="templateProduct">
+              <div class="col-md-4">
+                <img id="imgTeddy" class="img-thumbnail shadow" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 id="titleTeddy" class="card-title"></h5>
+                  <p id="textTeddy" class="card-text"></p>
+                  <p id="priceTeddy" class="card-text text-muted fs-5"></p>
+                  <br />
+                  <a
+                    id="btn-product"
+                    class="btn btn-outline-primary w-25"
+                    href="/front-end/product.html"
+                    role="button"
+                    >Détail</a
+                  >
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+        <!-- <ul id="teddies" class="list-group list-unstyled"></ul> -->
       </div>
     </main>
     <!-- FOOTER -->
     <footer>
-      <hr />
       <ul class="nav justify-content-center bg-origin">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">
