@@ -13,7 +13,7 @@ const showTeddies = async() => {
     apiTeddy
     .map(teddy =>(
       `
-    <li class="teddy-item">
+    <li>
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
@@ -24,15 +24,15 @@ const showTeddies = async() => {
               <h5 class="card-title">${teddy.name}</h5>
               <p class="card-text">${teddy.description}</p>
               <p class="card-text text-muted fs-5">
-                ${numberWithCommat(teddy.price)}€
+                ${numberWithCommas(teddy.price)}€
               </p>
              <br />
-              <a
-                class="btn btn-outline-primary w-25"
-                href="/front-end/product.html"
-                role="button"
-                >Détail</a
-              >
+             <a
+             id="btn-product"
+             class="btn btn-outline-primary w-25"
+             href="/front-end/product.html"
+             role="button"
+             >Détail</a>
             </div>
           </div>
         </div>
@@ -47,56 +47,13 @@ showTeddies();
 
 
 // Fonction pour formater le prix //
-function numberWithCommat(x) {
+function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{2})+(?!\d))/g, ",");
 }
 
 
 
 
+// TO DO LIST INDEX :
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// fetch('http://localhost:3000/api/teddies')
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-
-
-
-// const imgTeddy = document.getElementById('imgTeddy');
-// const nameTeddy = document.getElementById('nameTeddy');
-// const textTeddy = document.getElementById('textTeddy');
-// const priceTeddy = document.getElementById('priceTeddy');
-
-// fetch('http://localhost:3000/api/teddies')
-//   .then(res => res.json())
-//   .then(data => imgTeddy.src = data[0].imageUrl)
- 
-// fetch('http://localhost:3000/api/teddies')
-//   .then(res => res.json())
-//   .then(data => nameTeddy.textContent = data[0].name)
-
-// fetch('http://localhost:3000/api/teddies')
-//   .then(res => res.json())
-//   .then(data => textTeddy.textContent = data[0].description)
-
-// fetch('http://localhost:3000/api/teddies')
-//   .then(res => res.json())
-//   .then(data => priceTeddy.textContent = data[0].price)
+// Au clic du bouton "détail" > se rendre sur la page "product.html" et afficher que le teddy sélectionné (avec l'ID de l'API ?)

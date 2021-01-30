@@ -85,40 +85,46 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Norbert</h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">29,00€</small>
                 </p>
 
-                <label for="color-select">Choisissez une couleur:</label>
-
-                <select name="pets" id="color-select">
-                  <option value="">--Please choose an option--</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="hamster">Hamster</option>
-                  <option value="parrot">Parrot</option>
-                  <option value="spider">Spider</option>
-                  <option value="goldfish">Goldfish</option>
+                <label for="selectColor">Personnalisez :</label>
+                <select id="selectColor">
+                  <option>Choisissez une couleur</option>
                 </select>
+
                 <hr />
 
                 <div class="d-grid gap-2">
-                  <a
-                    class="btn btn-outline-primary"
-                    href="/front-end/panier.html"
-                    role="button"
-                    >Panier</a
-                  >
+                  <button type="button" class="btn btn-primary">
+                    Ajouter au panier
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a
+            class="btn btn-outline-primary w-25"
+            href="/front-end/index.html"
+            role="button"
+            ><i class="bi bi-arrow-left-circle" style="font-size: 1.5rem"></i>
+            Continuer mes achats</a
+          >
+          <a
+            class="btn btn-outline-primary w-25"
+            href="/front-end/panier.html"
+            role="button"
+            >Voir mon panier
+            <i class="bi bi-arrow-right-circle" style="font-size: 1.5rem"></i
+          ></a>
         </div>
       </div>
     </main>
@@ -136,7 +142,7 @@
     </footer>
 
     <!-- Custom JavaScript -->
-    <script defer src="/front-end/script/script.js"></script>
+    <script defer src="/front-end/script/productScript.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
