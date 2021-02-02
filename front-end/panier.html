@@ -68,7 +68,29 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Récapitulatif de votre panier</h5>
-          <p>Votre panier est vide</p>
+          <br />
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="card mb-3 w-25">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img id="cardImgTeddy" style="max-width: 8rem" src="" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 id="cardTitleTeddy" class="card-title"></h5>
+                    <p id="cardPriceTeddy" class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              id="cardRemove"
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- <p>Votre panier est vide</p> -->
         </div>
         <div class="card-footer text-muted">Formulaire de validation</div>
       </div>

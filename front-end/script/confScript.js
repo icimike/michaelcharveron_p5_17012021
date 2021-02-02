@@ -1,6 +1,6 @@
 
-// --- Récup et affichage ds page web --- (Je sais c'est mal...) //
-document.getElementById('prenom').innerHTML = localStorage.getItem("FirstName");
+// --- Récup et affichage ds page web --- //
+document.querySelector('#prenom').innerHTML = localStorage.getItem("FirstName");
 document.querySelector('#nom').innerHTML = localStorage.getItem("LastName");
 document.querySelector('#adresse').innerHTML = localStorage.getItem("Address");
 document.querySelector('#ville').innerHTML = localStorage.getItem("City");

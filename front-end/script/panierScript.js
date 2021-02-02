@@ -13,14 +13,31 @@ btnFormulaire.addEventListener("click", () => {
 });
 
 
-const idTeddy = {
-    name: "Norbert",
-    colors: ["Tan", "Chocolate", "Black", "White"],
-    price: 2900,
-    imageUrl: "http://localhost:3000/images/teddy_1.jpg",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-}
-window.localStorage.setItem('5be9c8541c9d440000665243', JSON.stringify(idTeddy));
+
+// --- Affichage de la selection précedente --- //
+document.querySelector('#cardImgTeddy').src = localStorage.getItem("Teddy");
+document.querySelector('#cardTitleTeddy').innerHTML = localStorage.getItem("Name");
+document.querySelector('#cardPriceTeddy').innerHTML = localStorage.getItem("Price");
+
+
+// --- Btn remove card --- //
+let cardRemove = document.querySelector("#cardRemove");
+cardRemove.addEventListener("click", () => {
+    document.querySelector('#cardImgTeddy').src = localStorage.removeItem("Teddy");
+    document.querySelector('#cardTitleTeddy').innerHTML = localStorage.removeItem("Name");
+    document.querySelector('#cardPriceTeddy').innerHTML = localStorage.removeItem("Price");
+})
+
+
+
+// const idTeddy = {
+//     name: "Norbert",
+//     colors: ["Tan", "Chocolate", "Black", "White"],
+//     price: 2900,
+//     imageUrl: "http://localhost:3000/images/teddy_1.jpg",
+//     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+// }
+// window.localStorage.setItem('5be9c8541c9d440000665243', JSON.stringify(idTeddy));
 
 
 // TO DO LIST PANIER : 
