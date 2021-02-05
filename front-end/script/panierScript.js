@@ -12,37 +12,37 @@ btnFormulaire.addEventListener("click", () => {
     localStorage.setItem("City", document.querySelector("#inputCity").value);
 });
 
-
-
 // --- Affichage de la selection précedente --- //
 document.querySelector('#cardImgTeddy').src = localStorage.getItem("Teddy");
 document.querySelector('#cardTitleTeddy').innerHTML = localStorage.getItem("Name");
 document.querySelector('#cardPriceTeddy').innerHTML = localStorage.getItem("Price");
+document.querySelector('#totalPrice').innerHTML = localStorage.getItem("Price");
 
 
-// --- Btn remove card --- //
-let cardRemove = document.querySelector("#cardRemove");
-cardRemove.addEventListener("click", () => {
-    document.querySelector('#cardImgTeddy').src = localStorage.removeItem("Teddy");
-    document.querySelector('#cardTitleTeddy').innerHTML = localStorage.removeItem("Name");
-    document.querySelector('#cardPriceTeddy').innerHTML = localStorage.removeItem("Price");
-})
+// --- Make sure the page is load in order to run the code --- //
+if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready()
+}
 
-
-
-// const idTeddy = {
-//     name: "Norbert",
-//     colors: ["Tan", "Chocolate", "Black", "White"],
-//     price: 2900,
-//     imageUrl: "http://localhost:3000/images/teddy_1.jpg",
-//     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-// }
-// window.localStorage.setItem('5be9c8541c9d440000665243', JSON.stringify(idTeddy));
+function ready() {
+    // --- Btn remove card --- //
+    let removeCardBtn = document.getElementsByClassName('btn-outline-danger')
+    console.log(removeCardBtn)
+    for (let i = 0; i < removeCardBtn.length; i++) {
+        let button = removeCardBtn[i]
+        button.addEventListener('click', function(event) {
+            let buttonClicked = event.target
+            buttonClicked.parentElement.parentElement.remove()
+        })
+    }
+}
 
 
 // TO DO LIST PANIER : 
-// Affichage du ou des teddy(s) sélectionné(s) sour forme de petites vignettes simplifiées (img, nom, prix, couleur)
-// Bouton pour supprimer un article ?
+// Affichage du ou des teddy(s) sélectionné(s) sour forme de petites vignettes simplifiées (img, nom, prix)
 // Total du prix du ou des teddy(s)
 // Envoyer toutes les données du panier et du formulaire sur le serveur (?) pour générer un numero de confirmation qui devra s'afficher sur la page confirmation.html
 // S'assurer que le panier se vide apres confirmation ?
+

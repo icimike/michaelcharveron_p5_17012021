@@ -63,34 +63,37 @@
         </div>
       </nav>
     </header>
-
     <main>
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Récapitulatif de votre panier</h5>
           <br />
-          <div class="d-flex justify-content-center align-items-center">
-            <div class="card mb-3 w-25">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img id="cardImgTeddy" style="max-width: 8rem" src="" />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 id="cardTitleTeddy" class="card-title"></h5>
-                    <p id="cardPriceTeddy" class="card-text"></p>
+          <div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="card w-25">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img id="cardImgTeddy" style="max-width: 8rem" src="" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 id="cardTitleTeddy" class="card-title"></h5>
+                      <p id="cardPriceTeddy" class="card-text"></p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <button
+                aria-label="Supprimer le produit"
+                id="cardRemove"
+                type="button"
+                class="btn btn-outline-danger btn-sm fw-bold"
+              >
+                X
+              </button>
             </div>
-            <button
-              id="cardRemove"
-              type="button"
-              class="btn-close"
-              aria-label="Close"
-            ></button>
           </div>
-          <!-- <p>Votre panier est vide</p> -->
+          <p class="m-auto fw-bold">Total = <span id="totalPrice"> €</span></p>
         </div>
         <div class="card-footer text-muted">Formulaire de validation</div>
       </div>
@@ -172,7 +175,7 @@
     </footer>
 
     <!-- Custom JavaScript -->
-    <script defer src="/front-end/script/panierScript.js"></script>
+    <script async src="/front-end/script/panierScript.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

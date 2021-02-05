@@ -1,4 +1,4 @@
-// Main function, auto executed at load time
+// --- Main function, auto executed at load time --- //
 (async () => {
     const productId = getProductId()
     const productData = await getProductData(productId)
@@ -16,12 +16,13 @@
       .then(productData => productData)
   }
   
+  
   function showTeddy(product) {
     document.getElementById('imgTeddy').src = product.imageUrl 
     document.getElementById('titleTeddy').textContent = product.name
     document.getElementById('priceTeddy').textContent = `${product.price / 100}.00 €`
     document.getElementById('textTeddy').textContent = product.description
-    
+    // --- Recuperer les differentes couleurs en fonction du Teddy sélectionné et les afficher ds une liste déroulante --- //
     product.colors.forEach(color => {
       const opt = document.createElement('option');
       opt.textContent = color;
@@ -29,22 +30,23 @@
       document.getElementById('selectColor').appendChild(opt)
     })
  
+let idTeddy = product._id;
+let infoTeddy = [product.name, product.imageUrl, `${product.price / 100}.00 €`]
 
-// --------- FORMULAIRE VALIDATION --------- //
-let AddToCard = document.querySelector("#addToCard");
-// console.log(AddToCard);
+    // --------- BTN ADD TO CARD --------- //
+    let addToCard = document.querySelector("#addToCard");
 
+    // --- Stockage des saisies ds local Storage --- //
+    addToCard.addEventListener("click", () => {
+      localStorage.setItem(idTeddy, JSON.stringify(infoTeddy));
 
-// --- Stockage des saisies ds local Storage --- //
-AddToCard.addEventListener("click", () => {
-    localStorage.setItem("Teddy", document.textContent = product.imageUrl);
-    localStorage.setItem("Name", document.textContent = product.name);
-    localStorage.setItem("Price", document.textContent = `${product.price / 100}.00 €`);
-    // localStorage.setItem("LastName", document.querySelector("#inputLastName").value);
-    // localStorage.setItem("eMail", document.querySelector("#inputEmail4").value);
-    // localStorage.setItem("Address", document.querySelector("#inputAddress").value);
-    // localStorage.setItem("City", document.querySelector("#inputCity").value);
-});
+      // --- Zone de Test --- //
+      localStorage.setItem("Teddy", document.textContent = product.imageUrl);
+      localStorage.setItem("Name", document.textContent = product.name);
+      localStorage.setItem("Price", document.textContent = `${product.price / 100}.00 €`);
+
+      alert("Produit ajouté au panier !");
+    });
 
 }
 
@@ -52,15 +54,6 @@ AddToCard.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
 // TO DO LIST PRODUCT :
-
-// Au clic du bouton AJOUTER AU PANIER : message comme quoi le produit est bien ajouté et si pas de couleur sélectionné : un message d'avertissement
 // La possibilité de revenir sur la page index.html tout en gardant le panier remplis (si teddy sélectionné) > utilisation du local storage ?
 // La possibilité de rajouter des teddys au panier si les conditions sont remplis 
