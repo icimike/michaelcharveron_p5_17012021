@@ -11,18 +11,38 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
     let html="";
 
     // Affichage du produit / personalisation
-    html += `<h1 class="row">${response.name}</h1>
-        <p class="row"><img src="${response.imageUrl}" alt="image d'ours en détails" style="width:90%; border-radius:5px;"></p>
-        <p class="row">${response.description}</p>
-        <p class="row"><b>Prix: ${(response.price/100).toFixed(2).replace(".",",")}€</b></p>
-        <!-- Personalisation de la couleur -->
-        <label for="select__color">
-            <h3>Personnaliser votre ours</h3>
-        </label>
-            <select class="section__choice" name="colors" id="select__color">
-            <!-- Mes choix de couleurs dans la function forEach --!>
-            </select>
-        <button class="addCart" style="border:0; background-color:#f3e9f1; padding:12px; border-radius:15px; box-shadow: 0px 0px 8px 0px white; margin-left:5px;"><b>Ajouter au panier</b><i class="fas fa-cart-arrow-down"></i></button>`
+    html += `<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          class="img-fluid img-thumbnail shadow"
+          src="${response.imageUrl}"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">${response.name}</h5>
+          <p id="textTeddy" class="card-text">${response.description}</p>
+          <p class="card-text">
+            <small id="priceTeddy" class="text-muted">${(response.price/100).toFixed(2).replace(".",",")}€</small>
+          </p>
+          <label for="select__color">
+          Personnalisez en choississant une autre couleur :
+      </label>
+          <select class="section__choice" name="colors" id="select__color">
+          </select>
+          <hr />
+
+          <div class="d-grid gap-2">
+            <button class="addCart btn btn-primary">
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    `
     document.getElementById("item__details").innerHTML = html;
     
     //Création d'une function foreach pour afficher mes choix de couleurs

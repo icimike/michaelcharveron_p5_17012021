@@ -51,11 +51,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link active text-center"
-                  aria-current="page"
                   href="/front-end/panier.html"
                 >
                   <i class="bi bi-basket2 fs-1"></i>
-                  <p id="basket_number" class="text-center"></p>
+                  <br />
+                  <span
+                    class="badge rounded-pill bg-secondary"
+                    id="basket_number"
+                  ></span>
                 </a>
               </li>
             </ul>
@@ -69,100 +72,7 @@
           <!--Intégration du panier en js-->
         </div>
       </div>
-      <!-- <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">Récapitulatif de votre panier</h5>
-          <br />
-          <div>
-            <div class="d-flex justify-content-center align-items-center">
-              <div class="card w-25">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img id="cardImgTeddy" style="max-width: 8rem" src="" />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 id="cardTitleTeddy" class="card-title"></h5>
-                      <p id="cardPriceTeddy" class="card-text"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                aria-label="Supprimer le produit"
-                id="cardRemove"
-                type="button"
-                class="btn btn-outline-danger btn-sm fw-bold"
-              >
-                X
-              </button>
-            </div>
-          </div>
-          <p class="m-auto fw-bold">Total = <span id="totalPrice"> €</span></p>
-        </div>
-        <div class="card-footer text-muted">Formulaire de validation</div>
-      </div> -->
-
-      <!-- <div class="card-body mx-auto" style="max-width: 30rem" ;>
-        <form
-          id="form"
-          class="row g-3"
-          action="confirmation.html"
-          method="link"
-        >
-          <div class="col-md-6">
-            <label for="inputFirstName" class="form-label">Prénom</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputFirstName"
-              required
-            />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputLastName" class="form-label">Nom</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputLastName"
-              required
-            />
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail4"
-              required
-            />
-          </div>
-
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Addresse</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputAddress"
-              required
-            />
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">Ville</label>
-            <input type="text" class="form-control" id="inputCity" required />
-          </div>
-
-          <div class="d-grid gap-2">
-            <button id="btnFormulaire" type="submit" class="btn btn-primary">
-              Confirmation
-            </button>
-          </div>
-        </form>
-      </div> -->
     </main>
-
     <footer>
       <hr />
       <ul class="nav justify-content-center bg-origin">

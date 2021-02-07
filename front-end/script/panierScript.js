@@ -13,20 +13,23 @@ function displayQuantity() {
         total = 0; //initialisation du total à 0
 
         boxSection.insertAdjacentHTML("afterbegin",
-            `<h1>Panier</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Articles</th>              
-                        <th>Nom</th>
-                        <th>Couleurs</th>
-                        <th>Nombre<br>d'articles</th>
-                        <th>Prix</th>
-                    </tr>
-                </thead>
-                <tbody class="order__details">
-                </tbody>
-            </table>`
+            `<div class="card text-center">
+                <div class="card-body">
+                <h5 class="card-title">Récapitulatif de votre panier</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                        <th scope="col">Articles</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Couleurs</th>
+                        <th scope="col">Nombre d'articles</th>
+                        <th scope="col">Prix</th>
+                        </tr>
+                        </thead>
+                        <tbody class="order__details"></tbody>
+                    </table>
+                </div>
+            </div>`
         );
         
         let html = "";
@@ -36,55 +39,95 @@ function displayQuantity() {
             total = total + (product.price * product.quantity);
 
             html +=`<tr>
-                        <td class="old"><img src="${product.imageUrl}" alt="ours peluche" style="width:100px;"></td>
+                        <td class="old"><img src="${product.imageUrl}" alt="ours en peluche" style="width:100px;"></td>
                         <td class="old">${product.name}</td>
                         <td class="old">${product.selectColors}</td>
-                        <td class="old" style="padding-left:50px;"><button class="decrease__item ${index}" style=" background-color:white; padding:0 5px 0 5px;"> - </button>
+                        <td class="old"><button class="decrease__item ${index} btn btn-outline-secondary fw-bold"> - </button>
                         ${product.quantity}
-                        <button class="increase__item ${index}" style="background-color:white; padding:0 5px 0 5px;"> + </button></td>
-                        <td class="old" style="padding-left:50px;">${(product.price * product.quantity/100).toFixed(2).replace(".",",")}€</td>
-                        <td><button class="delete__item ${index}" style="background-color:white; padding:0 5px 0 5px;">Supprimer</button></td>
+                        <button class="increase__item ${index} btn btn-outline-secondary fw-bold"> + </button></td>
+                        <td class="old">${(product.price * product.quantity/100).toFixed(2).replace(".",",")}€</td>
+                        <td><button class="delete__item ${index} btn btn-outline-danger"><i class="bi bi-trash"></i></button></td>
                     </tr>`
             document.querySelector(".order__details").innerHTML = html;
         })
 
         //Total prix + boutton annuler commande    
         boxSection.insertAdjacentHTML("beforeend",
-            `<div class="total" style="margin-left:5%;">
-                <p class="cart-section" style="margin-right:5%;"><b>Total: ${(total/100).toFixed(2).replace(".",",")}€</b></p>
-                <button class="cancel__ordered" style="border:0; background-color:#f3e9f1; border-radius:15px;          box-shadow: 0px 0px 8px 0px white; margin-left:5%;">
-                    <p>Annuler le panier</p>
-                </button>
+            `<div class="card text-center mx-auto w-50">
+                <div class="card-header">
+                    Total de votre commande
+                </div>
+                <div class="card-body">
+                    <h5 class=" cart-section card-title">${(total/100).toFixed(2).replace(".",",")}€</h5>
+                    <button class="cancel__ordered btn btn-outline-danger btn-sm">
+                    Annuler le panier
+                    </button>
+                </div>
+                <div class="card-footer text-muted">
+                Formulaire de validation
+                </div>
             </div>`
         );
         // Formulaire
         boxSection.insertAdjacentHTML("beforeend",
-            `<h2 style="margin-top:30px;">Veuillez remplir le formulaire ci-dessous avant de valider votre commande</h2>
-                <form class="contact__form" action="post" type="submit">
-                    <div class="details__form">
-                        <label for="firstname">PRENOM</label>
-                        <input type="text" name="firstname" id="firstname" placeholder="Julien" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
-                    </div>
-                    <div class="details__form">
-                        <label for="name">NOM</label>
-                        <input type="text" name="name" id="name" placeholder="Lemaire" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
-                    </div>
-                    <div class="details__form">
-                        <label for="address">ADRESSE</label>
-                        <input type="text" name="address" id="address" placeholder="33 rue Lefort" maxlength="50" required />
-                    </div>
-                    <div class="details__form">
-                        <label for="city">VILLE</label>
-                        <input type="text" name="city" id="city" placeholder="Monteville" maxlength="50" pattern="[A-Za-z]{2,}" required />
-                    </div>
-                    <div class="details__form">
-                        <label for="email">EMAIL</label>
-                        <input type="email" name="email" id="email" placeholder="Veulliez entrer une adresse valide: adressemail@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
-                    </div>
-                    <button class="validate" id="submit" style="border:0; background-color:#f3e9f1; border-radius:15px;  box-shadow: 0px 0px 8px 0px white; margin: 30px 0 0 45%;">
-                        <p>Valider vôtre commande</p>
-                    </button>
-                </form>`
+            `<div class="card-body mx-auto" style="max-width: 30rem" ;>
+            <form
+              type="submit"
+              class="contact__form row g-3"
+              action="post"
+              
+            >
+              <div class="col-md-6 details__form">
+                <label for="firstname" class="form-label">Prénom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstname"
+                  required
+                />
+              </div>
+    
+              <div class="col-md-6 details__form">
+                <label for="name" class="form-label">Nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 details__form">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  required
+                />
+              </div>
+    
+              <div class="col-12 details__form">
+                <label for="address" class="form-label">Addresse</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  required
+                />
+              </div>
+    
+              <div class="col-md-6 details__form">
+                <label for="city" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="city" required />
+              </div>
+    
+              <div class="d-grid gap-2">
+                <button id="submit" class="validate btn btn-primary">
+                  Confirmation
+                </button>
+              </div>
+            </form>
+          </div>`
         );
 
         // L'ecoute du boutton -
@@ -127,10 +170,17 @@ function displayQuantity() {
         //Sinon, Panier vide
     } else {
         boxSection.insertAdjacentHTML("afterbegin",
-            `<h2>Panier</h2>
-            <p class="cart-section" style="font-size:25px;">
-                Vous n'avez aucun article!<a href="./index.html"><b>Revenir à la page d'accueil</b></a>
-            </p>`
+            `<div class="card text-center mx-auto w-50">
+            <div class="card-header">
+              Votre panier
+            </div>
+            <div class="card-body">
+              <h5 class="cart-section card-title">Votre panier est vide !</h5>
+              <a href="./index.html" class="btn btn-outline-primary">
+              Retour à la page d'accueil
+          </a>
+            </div>
+          </div>`
         )
     }
 }
@@ -259,85 +309,4 @@ function postOrder(contactItems) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------- FORMULAIRE VALIDATION --------- //
-// let btnFormulaire = document.querySelector("#btnFormulaire");
-// console.log(btnFormulaire);
-
-
-// --- Stockage des saisies ds local Storage --- //
-// btnFormulaire.addEventListener("click", () => {
-//     localStorage.setItem("FirstName", document.querySelector("#inputFirstName").value);
-//     localStorage.setItem("LastName", document.querySelector("#inputLastName").value);
-//     localStorage.setItem("eMail", document.querySelector("#inputEmail4").value);
-//     localStorage.setItem("Address", document.querySelector("#inputAddress").value);
-//     localStorage.setItem("City", document.querySelector("#inputCity").value);
-// });
-
-// --- Affichage de la selection précedente --- //
-// document.querySelector('#cardImgTeddy').src = localStorage.getItem("Teddy");
-// document.querySelector('#cardTitleTeddy').innerHTML = localStorage.getItem("Name");
-// document.querySelector('#cardPriceTeddy').innerHTML = localStorage.getItem("Price");
-// document.querySelector('#totalPrice').innerHTML = localStorage.getItem("Price");
-
-
-// --- Make sure the page is load in order to run the code --- //
-// if (document.readyState == 'loading') {
-//     document.addEventListener('DOMContentLoaded', ready)
-// } else {
-//     ready()
-// }
-
-// function ready() {
-//     // --- Btn remove card --- //
-//     let removeCardBtn = document.getElementsByClassName('btn-outline-danger')
-//     console.log(removeCardBtn)
-//     for (let i = 0; i < removeCardBtn.length; i++) {
-//         let button = removeCardBtn[i]
-//         button.addEventListener('click', function(event) {
-//             let buttonClicked = event.target
-//             buttonClicked.parentElement.parentElement.remove()
-//         })
-//     }
-// }
-
-
-// TO DO LIST PANIER : 
-// Affichage du ou des teddy(s) sélectionné(s) sour forme de petites vignettes simplifiées (img, nom, prix)
-// Total du prix du ou des teddy(s)
-// Envoyer toutes les données du panier et du formulaire sur le serveur (?) pour générer un numero de confirmation qui devra s'afficher sur la page confirmation.html
-// S'assurer que le panier se vide apres confirmation ?
 
