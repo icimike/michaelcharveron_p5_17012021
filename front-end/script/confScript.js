@@ -3,9 +3,6 @@ const contact = JSON.parse(localStorage.getItem("contact"));
 const orderId = JSON.parse(localStorage.getItem("orderId"));
 const total = JSON.parse(localStorage.getItem('total'));
 
-// const contact = JSON.parse(sessionStorage.getItem("contact"));
-// const orderId = JSON.parse(sessionStorage.getItem("orderId"));
-// const total = JSON.parse(sessionStorage.getItem('total'));
 let showConfirmation ="";
 
 showConfirmation +=

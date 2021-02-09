@@ -20,10 +20,9 @@ function displayQuantity() {
                     <table class="table">
                         <thead>
                         <tr>
-                        <th scope="col">Articles</th>
+                        <th scope="col">Article</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Couleurs</th>
-                        <th scope="col">Nombre d'articles</th>
                         <th scope="col">Prix</th>
                         </tr>
                         </thead>
@@ -38,17 +37,14 @@ function displayQuantity() {
         // Affichage des articles + prix + quantité
         items.forEach( (product, index) => {
             
-            total = total + (product.price * product.quantity);
+            total = total + (product.price);
 
             showCartProduct +=
                     `<tr>
                         <td class="old"><img src="${product.imageUrl}" alt="ours en peluche" style="width:100px;"></td>
                         <td class="old">${product.name}</td>
                         <td class="old">${product.selectColors}</td>
-                        <td class="old"><button class="decrease__item ${index} btn btn-outline-secondary btn-sm fw-bold"> - </button>
-                        ${product.quantity}
-                        <button class="increase__item ${index} btn btn-outline-secondary btn-sm fw-bold"> + </button></td>
-                        <td class="old">${(product.price * product.quantity/100).toFixed(2).replace(".",",")}€</td>
+                        <td class="old">${(product.price/100).toFixed(2).replace(".",",")}€</td>
                         <td><button class="delete__item ${index} btn btn-outline-danger"><i class="bi bi-trash"></i></button></td>
                     </tr>`
             document.querySelector(".order__details").innerHTML = showCartProduct;
@@ -77,9 +73,8 @@ function displayQuantity() {
             <form
               type="submit"
               class="contact__form row g-3"
-              action="post"
-              
-            >
+              action="post"       
+              >
               <div class="col-md-6 details__form">
                 <label for="firstname" class="form-label">Prénom</label>
                 <input
@@ -90,7 +85,6 @@ function displayQuantity() {
                   required
                 />
               </div>
-    
               <div class="col-md-6 details__form">
                 <label for="name" class="form-label">Nom</label>
                 <input
@@ -111,7 +105,6 @@ function displayQuantity() {
                   required
                 />
               </div>
-    
               <div class="col-12 details__form">
                 <label for="address" class="form-label">Addresse</label>
                 <input
@@ -122,7 +115,6 @@ function displayQuantity() {
                   required
                 />
               </div>
-    
               <div class="col-md-6 details__form">
                 <label for="city" class="form-label">Ville</label>
                 <input type="text"
@@ -131,7 +123,6 @@ function displayQuantity() {
                 maxlength="50"
                 required />
               </div>
-    
               <div class="d-grid gap-2">
                 <button id="submit" class="validate btn btn-primary">
                   Confirmation
@@ -141,22 +132,6 @@ function displayQuantity() {
           </div>`
         );
 
-        // L'ecoute du boutton -
-        const decreaseItem = document.querySelectorAll(".decrease__item ");
-        decreaseItem.forEach((btn) => {
-
-            btn.addEventListener('click', e => {
-            removeOneItem(e, items);
-            })
-        })
-        // L'ecoute des bouttons +
-        const increaseItem = document.querySelectorAll(".increase__item");
-        increaseItem.forEach((btn) => {
-
-            btn.addEventListener('click', e => {
-            addOneItem(e, items);
-            })
-        })
         //supprimer
         const deleteItem = document.querySelectorAll(".delete__item");
         deleteItem.forEach((btn) => {
@@ -196,38 +171,6 @@ function displayQuantity() {
     }
 }
 
-// =====================================================================================
-
-// Ajoute "1" d'un article
-function addOneItem(e, items) {
-    let index = e.target.classList[1].slice(-1);
-    items[index].quantity++;
-    localStorage.setItem('anyItem', JSON.stringify(items));
-    updateNumberArticles();
-}
-
-// =====================================================================================
-
-// Enlève "1" d'un article, en arrivant à zéro il est supprimé
-function removeOneItem(e, items) {
-    let index = e.target.classList[1].slice(-1);
-    items[index].quantity--;
-    
-    if (items[index].quantity <= 0) {
-        items.splice(index, 1);       
-        if (items.length === 0 ) {
-            localStorage.removeItem('anyItem');
-        } else {
-            localStorage.setItem('anyItem', JSON.stringify(items));
-        }
-    } else {
-        localStorage.setItem('anyItem', JSON.stringify(items));
-    }
-    updateNumberArticles();
-}
-
-// =====================================================================================
- 
 //Supprime l'article sélectionné.
 //Récupère l'index de l'article correspondant avec le caractère du nom de la classe. 
 //Supprime le bon article dans le tableau "items" du localStorage
