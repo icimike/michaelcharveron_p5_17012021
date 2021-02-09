@@ -1,10 +1,14 @@
 //Récupération des différents éléments dans le sessionStorage afin de les afficher sur la page confirmation
-const contact = JSON.parse(sessionStorage.getItem("contact"));
-const orderId = JSON.parse(sessionStorage.getItem("orderId"));
-const total = JSON.parse(sessionStorage.getItem('total'));
-let html ="";
+const contact = JSON.parse(localStorage.getItem("contact"));
+const orderId = JSON.parse(localStorage.getItem("orderId"));
+const total = JSON.parse(localStorage.getItem('total'));
 
-html +=
+// const contact = JSON.parse(sessionStorage.getItem("contact"));
+// const orderId = JSON.parse(sessionStorage.getItem("orderId"));
+// const total = JSON.parse(sessionStorage.getItem('total'));
+let showConfirmation ="";
+
+showConfirmation +=
     `<div class="card text-center">
         <div class="card-body">
             <h2 class="card-title">Merci <span class="fw-bold">${contact.firstName} ${contact.lastName}</span> de votre commande !</h2>
@@ -37,8 +41,8 @@ html +=
             </div>
         </div>
     </div>`
-    document.getElementById("order__confirmed").innerHTML = html;
+    document.getElementById("order__confirmed").innerHTML = showConfirmation;
 
-sessionStorage.removeItem('contact');
-sessionStorage.removeItem('total');
-sessionStorage.removeItem('orderId');
+localStorage.removeItem('contact');
+localStorage.removeItem('total');
+localStorage.removeItem('orderId');

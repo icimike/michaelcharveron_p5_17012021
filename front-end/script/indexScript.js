@@ -1,20 +1,19 @@
-//////////  Récupération des données ours en peluches avec l'API fetch.
-
+// --- Récuparation des données de l'API --- //
 fetch('http://localhost:3000/api/teddies')
   .then((response) => response.json())
   .then((response) => {
   
     console.log(response);
 
-    //Je créer ma variable que je vais ajouter à mes elements
-    let getTeddy = "";
+    // Création de la variable qui s'ajoutera aux éléments //
+    let getAllTeddies = "";
 
-    // Boucle pour récupére toutes les variables des produits + (Foreach)
+    // Boucle pour récupérer les données des produits //
     for(let i = 0; i < response.length; i++) {
       console.log(response[i].name);
       
-      //Html pur , Créer les élément, clone prototype
-      getTeddy += 
+      // Création de l'élément en HTML (clone prototype) //
+      getAllTeddies += 
       `<li class="item">
         <div class="card mb-3">
           <div id="cardProduct" class="row g-0">
@@ -38,79 +37,13 @@ fetch('http://localhost:3000/api/teddies')
       </li>`
     }
     
-     // Ajouter mes element créer dans le HTML pour afficher mes produits
-    document.getElementById("items").innerHTML = getTeddy
+     // Insertion des éléments recuperés dans la page index.html //
+    document.getElementById("items").innerHTML = getAllTeddies
 })
 
-// Message d'erreur
+// Message d'erreur //
 .catch(e => {
   errorMessage();
+  console.log(e);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// main()
-
-// async function main() {
-//   const products = await getProducts()
-//   for (product of products) {
-//     displayProduct(product)
-//   }
-// }
-
-// function getProducts() {
-//   return fetch("http://localhost:3000/api/teddies")
-//     .then(function(httpBodyResponse) {
-//       return httpBodyResponse.json()
-//     })
-//     .then(function(products) {
-//       return products
-//     })
-//     .catch(function(error) {
-//       alert(error)
-//     })
-// }
-
-// function displayProduct() {
-//   const templateElt = document.getElementById("templateProduct")
-//   const cloneElt = document.importNode(templateElt.content, true)
-
-//   cloneElt.getElementById("imgTeddy").src = product.imageUrl
-//   cloneElt.getElementById("titleTeddy").textContent = product.name
-//   cloneElt.getElementById("textTeddy").textContent = product.description
-//   cloneElt.getElementById("priceTeddy").textContent = `${product.price / 100}.00 €`
-//   cloneElt.getElementById("btn-product").href = `product.html?id=${product._id}`
-
-//   document.getElementById("cardProduct").appendChild(cloneElt)
-// }

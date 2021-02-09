@@ -7,15 +7,16 @@ displayQuantity()
 // Contenu du panier, des boutons de suppression et d'annulation du panier ainsi que du formulaire de contact 
 function displayQuantity() {
 
-    if (sessionStorage.getItem('anyItem') !== null) {
+    if (localStorage.getItem('anyItem') !== null) {
 
-        let items = JSON.parse(sessionStorage.getItem('anyItem'));
+        let items = JSON.parse(localStorage.getItem('anyItem'));
         total = 0; //initialisation du total à 0
 
         boxSection.insertAdjacentHTML("afterbegin",
             `<div class="card text-center">
                 <div class="card-body">
                 <h5 class="card-title">Récapitulatif de votre panier</h5>
+                    <div class= "table-responsive">
                     <table class="table">
                         <thead>
                         <tr>
@@ -28,27 +29,29 @@ function displayQuantity() {
                         </thead>
                         <tbody class="order__details"></tbody>
                     </table>
+                    </div>
                 </div>
             </div>`
         );
         
-        let html = "";
+        let showCartProduct = "";
         // Affichage des articles + prix + quantité
         items.forEach( (product, index) => {
             
             total = total + (product.price * product.quantity);
 
-            html +=`<tr>
+            showCartProduct +=
+                    `<tr>
                         <td class="old"><img src="${product.imageUrl}" alt="ours en peluche" style="width:100px;"></td>
                         <td class="old">${product.name}</td>
                         <td class="old">${product.selectColors}</td>
-                        <td class="old"><button class="decrease__item ${index} btn btn-outline-secondary fw-bold"> - </button>
+                        <td class="old"><button class="decrease__item ${index} btn btn-outline-secondary btn-sm fw-bold"> - </button>
                         ${product.quantity}
-                        <button class="increase__item ${index} btn btn-outline-secondary fw-bold"> + </button></td>
+                        <button class="increase__item ${index} btn btn-outline-secondary btn-sm fw-bold"> + </button></td>
                         <td class="old">${(product.price * product.quantity/100).toFixed(2).replace(".",",")}€</td>
                         <td><button class="delete__item ${index} btn btn-outline-danger"><i class="bi bi-trash"></i></button></td>
                     </tr>`
-            document.querySelector(".order__details").innerHTML = html;
+            document.querySelector(".order__details").innerHTML = showCartProduct;
         })
 
         //Total prix + boutton annuler commande    
@@ -83,6 +86,7 @@ function displayQuantity() {
                   type="text"
                   class="form-control"
                   id="firstname"
+                  maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}"
                   required
                 />
               </div>
@@ -93,6 +97,7 @@ function displayQuantity() {
                   type="text"
                   class="form-control"
                   id="name"
+                  maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}"
                   required
                 />
               </div>
@@ -102,6 +107,7 @@ function displayQuantity() {
                   type="email"
                   class="form-control"
                   id="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}"
                   required
                 />
               </div>
@@ -112,13 +118,18 @@ function displayQuantity() {
                   type="text"
                   class="form-control"
                   id="address"
+                  maxlength="50"
                   required
                 />
               </div>
     
               <div class="col-md-6 details__form">
                 <label for="city" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="city" required />
+                <input type="text"
+                class="form-control"
+                id="city"
+                maxlength="50"
+                required />
               </div>
     
               <div class="d-grid gap-2">
@@ -149,11 +160,11 @@ function displayQuantity() {
         //supprimer
         const deleteItem = document.querySelectorAll(".delete__item");
         deleteItem.forEach((btn) => {
-
             btn.addEventListener('click', e => {
             deleteItemSelect(e, items);
             });
         });
+        
         //annuler
         const cancelOrdered = document.querySelector(".cancel__ordered");
         cancelOrdered.addEventListener('click', () => {
@@ -171,16 +182,16 @@ function displayQuantity() {
     } else {
         boxSection.insertAdjacentHTML("afterbegin",
             `<div class="card text-center mx-auto w-50">
-            <div class="card-header">
-              Votre panier
-            </div>
-            <div class="card-body">
-              <h5 class="cart-section card-title">Votre panier est vide !</h5>
-              <a href="./index.html" class="btn btn-outline-primary">
-              Retour à la page d'accueil
-          </a>
-            </div>
-          </div>`
+                <div class="card-header">
+                Votre panier
+                </div>
+                <div class="card-body">
+                    <h5 class="cart-section card-title">Votre panier est vide !</h5>
+                    <a href="./index.html" class="btn btn-outline-primary">
+                    Retour à la page d'accueil
+                    </a>
+                </div>
+            </div>`
         )
     }
 }
@@ -191,7 +202,7 @@ function displayQuantity() {
 function addOneItem(e, items) {
     let index = e.target.classList[1].slice(-1);
     items[index].quantity++;
-    sessionStorage.setItem('anyItem', JSON.stringify(items));
+    localStorage.setItem('anyItem', JSON.stringify(items));
     updateNumberArticles();
 }
 
@@ -205,12 +216,12 @@ function removeOneItem(e, items) {
     if (items[index].quantity <= 0) {
         items.splice(index, 1);       
         if (items.length === 0 ) {
-            sessionStorage.removeItem('anyItem');
+            localStorage.removeItem('anyItem');
         } else {
-            sessionStorage.setItem('anyItem', JSON.stringify(items));
+            localStorage.setItem('anyItem', JSON.stringify(items));
         }
     } else {
-        sessionStorage.setItem('anyItem', JSON.stringify(items));
+        localStorage.setItem('anyItem', JSON.stringify(items));
     }
     updateNumberArticles();
 }
@@ -219,14 +230,14 @@ function removeOneItem(e, items) {
  
 //Supprime l'article sélectionné.
 //Récupère l'index de l'article correspondant avec le caractère du nom de la classe. 
-//Supprime le bon article dans le tableau "items" du sessionStorage
+//Supprime le bon article dans le tableau "items" du localStorage
 function deleteItemSelect(e, items) {
     let index = e.target.classList[1].slice(-1);
     items.splice(index, 1);
-    sessionStorage.setItem('anyItem', JSON.stringify(items));
+    localStorage.setItem('anyItem', JSON.stringify(items));
 
     if (items.length === 0) {
-        sessionStorage.removeItem('anyItem');
+        localStorage.removeItem('anyItem');
     }
     updateNumberArticles();
 }
@@ -235,7 +246,7 @@ function deleteItemSelect(e, items) {
 
 //Annulation tout le panier
 function cancelMyOrdered() {
-    sessionStorage.removeItem('anyItem');
+    localStorage.removeItem('anyItem');
     updateNumberArticles();
 }
 
@@ -263,8 +274,8 @@ function sendform() {
     };
 
     let products = [];
-    if (sessionStorage.getItem('anyItem') !== null) {
-        let productTab = JSON.parse(sessionStorage.getItem('anyItem'));
+    if (localStorage.getItem('anyItem') !== null) {
+        let productTab = JSON.parse(localStorage.getItem('anyItem'));
         
         productTab.forEach( p => {
             products.push(p._id);
@@ -279,7 +290,7 @@ function sendform() {
 // =====================================================================================
 
 //Requête POST, envoi au serveur "contact" et le tableau d'id "products"
-//Enregistre l'objet "contact" et Id, le total de la commande sur le sessionStorage.
+//Enregistre l'objet "contact" et Id, le total de la commande sur le localStorage.
 //Envoie page "confirmation"
 function postOrder(contactItems) {
 
@@ -291,14 +302,13 @@ function postOrder(contactItems) {
         mode:'cors',
         body: contactItems
     }).then(response => {
-
         return response.json();
 
     }).then( r => {
-        sessionStorage.setItem('contact', JSON.stringify(r.contact));
-        sessionStorage.setItem('orderId', JSON.stringify(r.orderId));
-        sessionStorage.setItem('total', JSON.stringify(total));
-        sessionStorage.removeItem('anyItem');
+        localStorage.setItem('contact', JSON.stringify(r.contact));
+        localStorage.setItem('orderId', JSON.stringify(r.orderId));
+        localStorage.setItem('total', JSON.stringify(total));
+        localStorage.removeItem('anyItem');
         window.location.replace("./confirmation.html");
     })
     .catch((e) => {

@@ -1,29 +1,22 @@
-// Appel ma function du nombre d'article dans mon panier
+// Appel de la function pour le nombre d'article du panier //
 itemConfirmation()
 
-// function qui affiche le nombre d'articles dans le panier.
+// Affichage du nombre d'article dans le panier //
 function itemConfirmation() {
-    
     div = document.querySelector("#basket_number")
     let nomber = 0;
-
-    if (sessionStorage.getItem('anyItem') !== null) {
-        
-        let keyNomber = JSON.parse(sessionStorage.getItem('anyItem'));
-        
+    if (localStorage.getItem('anyItem') !== null) {
+        let keyNomber = JSON.parse(localStorage.getItem('anyItem'));
         keyNomber.forEach((prod) => {
             nomber = nomber + prod.quantity;
         });
     }
     div.textContent = nomber;
-    console.log("test ajout")
 }
 
-//  function de message d'erreur si pas de connexion au serveur
-// function errorMessage() {
-
-//     let html = "";
-   
-//     html += `<p class="section__error" style=" font-size:30px;"><b>"Nous ne parvenons pas à vous connecter, vérifiez votre réseau et reessayer"<b></p>`
-//     document.querySelector(".error").innerHTML = html;
-// }
+//  Message d'erreur si probleme de connexion au serveur //
+function errorMessage() {
+    let messageError = "";
+    messageError += `<p class="fw-bold text-center fs-1">"Petit problème de connexion au serveur... 🥺"</p>`
+    document.querySelector(".error").innerHTML = messageError;
+}
