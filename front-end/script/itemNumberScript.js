@@ -4,14 +4,14 @@ itemConfirmation()
 // Affichage du nombre d'article dans le panier //
 function itemConfirmation() {
     div = document.querySelector("#basket_number")
-    let nomber = 0;
+    let number = 0;
     if (localStorage.getItem('anyItem') !== null) {
-        let keyNomber = JSON.parse(localStorage.getItem('anyItem'));
-        keyNomber.forEach((prod) => {
-            nomber = nomber + prod.quantity;
+        let keyNumber = JSON.parse(localStorage.getItem('anyItem'));
+        keyNumber.forEach((prod) => {
+            number = number + prod.quantity;
         });
     }
-    div.textContent = nomber;
+    div.textContent = number;
 }
 
 //  Message d'erreur si probleme de connexion au serveur //

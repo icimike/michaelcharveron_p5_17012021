@@ -12,17 +12,17 @@ fetch('http://localhost:3000/api/teddies')
     for(let i = 0; i < response.length; i++) {
       console.log(response[i].name);
       
-      // Création de l'élément en HTML (clone prototype) //
+      // Création de l'élément en HTML //
       getAllTeddies += 
       `<li class="item">
         <div class="card mb-3">
           <div id="cardProduct" class="row g-0">
             <div class="col-md-4">
-              <img src="${response[i].imageUrl}" class="img-thumbnail shadow" />
+              <img src="${response[i].imageUrl}" class="img-thumbnail shadow" alt="Ours en peluche" />
             </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">${response[i].name}</h5>
+                  <h2 class="card-title fs-4">${response[i].name}</h2>
                   <p class="card-text">${response[i].description}</p>
                   <p class="card-text text-muted fs-5">${(response[i].price/100).toFixed(2).replace(".",",")}€</p>
                   <br />

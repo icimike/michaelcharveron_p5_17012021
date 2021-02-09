@@ -14,12 +14,13 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
       <div class="row g-0">
       <div class="col-md-4">
         <img
+          alt="Ours en peluche"
           class="img-fluid img-thumbnail shadow"
           src="${response.imageUrl}"/>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">${response.name}</h5>
+          <h2 class="card-title fs-4">${response.name}</h2>
           <p class="card-text">${response.description}</p>
           <p class="card-text text-muted">${(response.price/100).toFixed(2).replace(".",",")}€</p>
           <label for="select__color">
@@ -81,6 +82,7 @@ function addItemCart (item) {
         quantity: 1,
         selectColors: item.selectColors
     }
+
     let otherItem = true;
     // Si localStorage vide : création d'un nouveau tableau "cartItem"  //
     if (localStorage.getItem('anyItem') === null) {
@@ -100,8 +102,9 @@ function addItemCart (item) {
     if (otherItem) cartItem.push(saveItemCart);
     localStorage.setItem('anyItem', JSON.stringify(cartItem));
 }
-// Message d'alert d'ajout d'un produit dans le panier //
+// Message lors de l'ajout d'un produit dans le panier //
 itemConfirmation();
 alert("Produit ajouté au panier !");
+
 }
 

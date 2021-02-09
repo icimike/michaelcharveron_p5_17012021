@@ -45,7 +45,7 @@ function displayQuantity() {
                         <td class="old">${product.name}</td>
                         <td class="old">${product.selectColors}</td>
                         <td class="old">${(product.price/100).toFixed(2).replace(".",",")}€</td>
-                        <td><button class="delete__item ${index} btn btn-outline-danger"><i class="bi bi-trash"></i></button></td>
+                        <td><button class="delete__item ${index} btn btn-outline-danger" aria-label="Supprimer l'article"><i class="bi bi-trash"></i></button></td>
                     </tr>`
             document.querySelector(".order__details").innerHTML = showCartProduct;
         })
