@@ -1,18 +1,17 @@
-let boxSection = document.querySelector("#item__select");
-// variable quantité 0
+let cardItem = document.querySelector("#item__select");
 let total = 0;
-// Appel ma function affichage du panier
-displayQuantity()
+// Affichage du panier //
+showCard()
 
-// Contenu du panier, des boutons de suppression et d'annulation du panier ainsi que du formulaire de contact 
-function displayQuantity() {
+// Création du panier + bouton suppression et d'annulation + formulaire de confirmation //
+function showCard() {
 
     if (localStorage.getItem('anyItem') !== null) {
 
         let items = JSON.parse(localStorage.getItem('anyItem'));
-        total = 0; //initialisation du total à 0
+        total = 0; // Initialisation du total à 0 //
 
-        boxSection.insertAdjacentHTML("afterbegin",
+        cardItem.insertAdjacentHTML("afterbegin",
             `<div class="card text-center">
                 <div class="card-body">
                 <h5 class="card-title">Récapitulatif de votre panier</h5>
@@ -34,7 +33,7 @@ function displayQuantity() {
         );
         
         let showCartProduct = "";
-        // Affichage des articles + prix + quantité
+        // Affichage des articles selectionnés + couleur + prix //
         items.forEach( (product, index) => {
             
             total = total + (product.price);
@@ -50,8 +49,8 @@ function displayQuantity() {
             document.querySelector(".order__details").innerHTML = showCartProduct;
         })
 
-        //Total prix + boutton annuler commande    
-        boxSection.insertAdjacentHTML("beforeend",
+        // Affichage du panier total + btn annuler commande //    
+        cardItem.insertAdjacentHTML("beforeend",
             `<div class="card text-center mx-auto w-50">
                 <div class="card-header">
                     Total de votre commande
@@ -67,8 +66,8 @@ function displayQuantity() {
                 </div>
             </div>`
         );
-        // Formulaire
-        boxSection.insertAdjacentHTML("beforeend",
+        // Formulaire de confirmation //
+        cardItem.insertAdjacentHTML("beforeend",
             `<div class="card-body mx-auto" style="max-width: 30rem" ;>
             <form
               type="submit"
@@ -132,7 +131,7 @@ function displayQuantity() {
           </div>`
         );
 
-        //supprimer
+        // Btn supprimer article //
         const deleteItem = document.querySelectorAll(".delete__item");
         deleteItem.forEach((btn) => {
             btn.addEventListener('click', e => {
@@ -140,22 +139,22 @@ function displayQuantity() {
             });
         });
         
-        //annuler
+        // Btn annuler commande //
         const cancelOrdered = document.querySelector(".cancel__ordered");
         cancelOrdered.addEventListener('click', () => {
             cancelMyOrdered();
         });
 
-        //validation formulaire
+        // Validation du formulaire //
         const form = document.querySelector(".contact__form");
         form.addEventListener('submit', e => {
             e.preventDefault();
             sendform();
         });
 
-        //Sinon, Panier vide
+        // Sinon : Message Panier vide //
     } else {
-        boxSection.insertAdjacentHTML("afterbegin",
+        cardItem.insertAdjacentHTML("afterbegin",
             `<div class="card text-center mx-auto w-50">
                 <div class="card-header">
                 Votre panier
@@ -171,9 +170,7 @@ function displayQuantity() {
     }
 }
 
-//Supprime l'article sélectionné.
-//Récupère l'index de l'article correspondant avec le caractère du nom de la classe. 
-//Supprime le bon article dans le tableau "items" du localStorage
+// Dans LocalStorage : suppression de l'article sélectionné //
 function deleteItemSelect(e, items) {
     let index = e.target.classList[1].slice(-1);
     items.splice(index, 1);
@@ -185,28 +182,20 @@ function deleteItemSelect(e, items) {
     updateNumberArticles();
 }
 
-// =====================================================================================
-
-//Annulation tout le panier
+// Dans LocalStorage : Annulation du panier //
 function cancelMyOrdered() {
     localStorage.removeItem('anyItem');
     updateNumberArticles();
 }
 
-// =====================================================================================
-
-//Réinitialise la section "item__select" et le nombre d'article dans le panier
+// Dans LocalStorage : Réinitialise le panier et le nombre d'article //
 function updateNumberArticles() {
-    boxSection.innerHTML = "";
-    displayQuantity();
+    cardItem.innerHTML = "";
+    showCard();
     itemConfirmation();
 }
 
-// =====================================================================================
-
-//Récupère les valeurs de l'input dans contact__form
-//Récupère les id des produits du panier dans le tableau products
-//L'objet contact et le tableau products sont envoyé dans la function postOrder
+// Récuperation des valeurs du formulaire + l'id des produits //
 function sendform() {
     let contact = {
         firstName: document.getElementById("firstname").value,
@@ -230,11 +219,8 @@ function sendform() {
     })
     postOrder(contactItems);
 };
-// =====================================================================================
 
-//Requête POST, envoi au serveur "contact" et le tableau d'id "products"
-//Enregistre l'objet "contact" et Id, le total de la commande sur le localStorage.
-//Envoie page "confirmation"
+// Envoi des données du formulaire + le ou les id(s) : requête POST //
 function postOrder(contactItems) {
 
     fetch("http://localhost:3000/api/teddies/order", {
@@ -247,7 +233,9 @@ function postOrder(contactItems) {
     }).then(response => {
         return response.json();
 
-    }).then( r => {
+    })
+    // Enregistre les infos du formulaire + id + total de la commande pour affichage dans la page confirmation.html //
+    .then( r => {
         localStorage.setItem('contact', JSON.stringify(r.contact));
         localStorage.setItem('orderId', JSON.stringify(r.orderId));
         localStorage.setItem('total', JSON.stringify(total));

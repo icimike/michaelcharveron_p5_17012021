@@ -14,7 +14,7 @@ function itemConfirmation() {
     div.textContent = number;
 }
 
-//  Message d'erreur si probleme de connexion au serveur //
+//  Message d'erreur si pas de connexion au serveur //
 function errorMessage() {
     let messageError = "";
     messageError += `<p class="fw-bold text-center fs-1">"Petit problème de connexion au serveur... 🥺"</p>`

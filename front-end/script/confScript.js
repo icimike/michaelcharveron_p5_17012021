@@ -1,10 +1,11 @@
-//Récupération des différents éléments dans le sessionStorage afin de les afficher sur la page confirmation
+// Récupération des éléments du localStorage //
 const contact = JSON.parse(localStorage.getItem("contact"));
 const orderId = JSON.parse(localStorage.getItem("orderId"));
 const total = JSON.parse(localStorage.getItem('total'));
 
 let showConfirmation ="";
 
+// Affichage du message de confirmation //
 showConfirmation +=
     `<div class="card text-center">
         <div class="card-body">
@@ -20,7 +21,7 @@ showConfirmation +=
     <br />
     <div class="card text-center mx-auto" style="max-width: 30rem">
         <div class="card-body">
-            <p class="card-text">Celle-ci sera expedié à cette adresse :</p>
+            <p class="card-text">Celle-ci sera expediée à cette adresse :</p>
             <p class="card-text">
             <span class="fw-bold">${contact.address}</span> à
             <span class="fw-bold">${contact.city}</span>
@@ -40,6 +41,7 @@ showConfirmation +=
     </div>`
     document.getElementById("order__confirmed").innerHTML = showConfirmation;
 
+// Effacer les éléments du LocalStorage //
 localStorage.removeItem('contact');
 localStorage.removeItem('total');
 localStorage.removeItem('orderId');
