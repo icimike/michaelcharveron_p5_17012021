@@ -92,11 +92,12 @@ function addItemCart (item) {
     // Sinon : récupération du tableau présent, ajout du nouveau produit et enregistrement du nouveau tableau //
     else { 
         cartItem = JSON.parse(localStorage.getItem('anyItem'));
-
+        
         cartItem.forEach((prod) => {
             if (item._id === prod._id && item.selectColors === prod.selectColors) {
-                prod.quantity++;
                 otherItem = false;
+                alert("-> Produit déja dans votre panier <-")
+                cardBtn.disabled = true;
             }
         })
     if (otherItem) cartItem.push(saveItemCart);
@@ -105,6 +106,4 @@ function addItemCart (item) {
 // Message lors de l'ajout d'un produit dans le panier //
 itemConfirmation();
 alert("Produit ajouté au panier !");
-
 }
-
