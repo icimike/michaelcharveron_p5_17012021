@@ -133,9 +133,9 @@ function showCard() {
 
         // Btn supprimer article //
         const deleteItem = document.querySelectorAll(".delete__item");
-        deleteItem.forEach((btn) => {
-            btn.addEventListener('click', e => {
-            deleteItemSelect(e, items);
+        deleteItem.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+            deleteItemSelect(index, items);
             });
         });
         
@@ -170,9 +170,9 @@ function showCard() {
     }
 }
 
+
 // Dans LocalStorage : suppression de l'article sélectionné //
-function deleteItemSelect(e, items) {
-    let index = e.target.classList[1].slice(-1);
+function deleteItemSelect(index, items) {
     items.splice(index, 1);
     localStorage.setItem('anyItem', JSON.stringify(items));
 

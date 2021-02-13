@@ -3,14 +3,14 @@ fetch('http://localhost:3000/api/teddies')
   .then((response) => response.json())
   .then((response) => {
   
-    console.log(response);
+    console.log(response); // Visualisation des données récuperées //
 
     // Création de la variable qui s'ajoutera aux éléments //
     let getAllTeddies = "";
 
     // Boucle pour récupérer les données des produits //
     for(let i = 0; i < response.length; i++) {
-      console.log(response[i].name);
+      console.log(response[i].name); // Visualisation si la boucle est opérationnel //
       
       // Création de l'élément en HTML //
       getAllTeddies += 

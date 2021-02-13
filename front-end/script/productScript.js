@@ -1,4 +1,4 @@
-// --- Récupération du produit (id) séléctionné dans la page précédente --- //
+// Récupération du produit (id) séléctionné dans la page précédente //
 const productId = window.location.search.substr(1); 
 
 // Récupération des données du produit en fonction de son id sur l'API //
@@ -96,7 +96,7 @@ function addItemCart (item) {
         cartItem.forEach((prod) => {
             if (item._id === prod._id && item.selectColors === prod.selectColors) {
                 otherItem = false;
-                alert("-> Produit déja dans votre panier <-")
+                alert("INFORMATION : Produit déja dans votre panier (Nos Ours en peluche sont faits à la main et par conséquent unique, mais vous pouvez néanmoins sélectionner une couleur differente et l'ajouter à votre panier)")
                 cardBtn.disabled = true;
             }
         })
@@ -105,5 +105,5 @@ function addItemCart (item) {
 }
 // Message lors de l'ajout d'un produit dans le panier //
 itemConfirmation();
-alert("Produit ajouté au panier !");
+  alert("Produit ajouté au panier !")
 }
