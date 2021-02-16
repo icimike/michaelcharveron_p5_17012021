@@ -1,5 +1,5 @@
 // Récupération du produit (id) séléctionné dans la page précédente //
-const productId = window.location.search.substr(1); 
+const productId = window.location.search.substring(1); 
 
 // Récupération des données du produit en fonction de son id sur l'API //
 fetch(`http://localhost:3000/api/teddies/${productId}`)
@@ -72,7 +72,6 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
 function addItemCart (item) {
 
     let cartItem = []
-
     // Stockage dans un objet //
     let saveItemCart = {
         _id: item._id,
@@ -82,14 +81,15 @@ function addItemCart (item) {
         quantity: 1,
         selectColors: item.selectColors
     }
-
+    
     let otherItem = true;
     // Si localStorage vide : création d'un nouveau tableau "cartItem"  //
     if (localStorage.getItem('anyItem') === null) {
         cartItem.push(saveItemCart);
         localStorage.setItem('anyItem', JSON.stringify(cartItem));
     }
-    // Sinon : récupération du tableau présent, ajout du nouveau produit et enregistrement du nouveau tableau //
+    // Sinon : récupération du tableau présent, ajout du nouveau produit
+    // et enregistrement du nouveau tableau //
     else { 
         cartItem = JSON.parse(localStorage.getItem('anyItem'));
         

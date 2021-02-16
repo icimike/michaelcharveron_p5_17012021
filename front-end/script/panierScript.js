@@ -40,16 +40,18 @@ function showCard() {
 
             showCartProduct +=
                     `<tr>
-                        <td class="old"><img src="${product.imageUrl}" alt="ours en peluche" style="width:100px;"></td>
+                        <td class="old"><img src="${product.imageUrl}"
+                        alt="ours en peluche" style="width:100px;"></td>
                         <td class="old">${product.name}</td>
                         <td class="old">${product.selectColors}</td>
                         <td class="old">${(product.price/100).toFixed(2).replace(".",",")}€</td>
-                        <td><button class="delete__item ${index} btn btn-outline-danger" aria-label="Supprimer l'article"><i class="bi bi-trash"></i></button></td>
+                        <td><button class="delete__item ${index} btn btn-outline-danger" 
+                        aria-label="Supprimer l'article"><i class="bi bi-trash"></i></button></td>
                     </tr>`
             document.querySelector(".order__details").innerHTML = showCartProduct;
         })
 
-        // Affichage du panier total + btn annuler commande //    
+        // Affichage du panier total + btn annuler commande //
         cardItem.insertAdjacentHTML("beforeend",
             `<div class="card text-center mx-auto w-50">
                 <div class="card-header">
@@ -57,6 +59,9 @@ function showCard() {
                 </div>
                 <div class="card-body">
                     <h5 class=" cart-section card-title">${(total/100).toFixed(2).replace(".",",")}€</h5>
+                    <a href="./index.html" class="btn btn-outline-primary btn-sm">
+                    Continuer mes achats
+                    </a>
                     <button class="cancel__ordered btn btn-outline-danger btn-sm">
                     Annuler le panier
                     </button>
@@ -90,7 +95,7 @@ function showCard() {
                   type="text"
                   class="form-control"
                   id="name"
-                  maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}"
+                  maxlength="25" pattern="[a-zA-ZÀ-ÿ]{1,}"
                   required
                 />
               </div>
